@@ -1,0 +1,180 @@
+html,
+body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: "PT Mono", monospace;
+    font-size: 16px;
+}
+
+.app * {
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+}
+
+.infobar {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+}
+
+.infobar-clock {
+    width: 40%;
+    margin: auto;
+    text-align: right;
+    font-size: 2.5vh;
+}
+
+.infobar-logo {
+    width: 60%;
+    margin: auto 40px auto 0;
+    color: #7b7b7b;
+    font-family: "Exo 2", sans-serif;
+    font-size: 3vh;
+    text-align: right;
+}
+
+.navbar {
+    width: 75%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    perspective: 500px;
+    display: flex;
+}
+
+.navbar__background {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: rotateX(60deg);
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0)
+    );
+}
+
+.navbar-button {
+    width: 100px;
+    height: 100px;
+    margin: -50px auto;
+    background-color: transparent;
+    border-style: none;
+    -webkit-box-reflect: below 0
+        linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(255, 255, 255, 0) 60%
+        );
+}
+
+.navbar-button > * {
+    pointer-events: none;
+}
+
+.navbar-button__icon {
+    filter: invert(100%) brightness(90%);
+}
+
+.frame {
+    height: auto;
+    position: absolute;
+}
+
+.frame--main {
+    width: 70%;
+    left: 1%;
+    top: 8vh;
+    bottom: 175px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-radius: 50px;
+    border-width: 4px;
+}
+
+.frame--main__greeting {
+    font-size: 1rem;
+    padding: 30px;
+}
+
+.frame--log {
+    width: 25%;
+    right: 1%;
+    top: 50vh;
+    bottom: 175px;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 2px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.frame--log::-webkit-scrollbar {
+    width: 20px;
+}
+
+.frame--log::-webkit-scrollbar-track {
+    background: tramsparent;
+}
+
+.frame--log::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #e5e5e5;
+}
+
+.frame--log::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.frame--log__text {
+    width: 90%;
+    height: 90%;
+    font-size: 0.75rem;
+    padding: 5%;
+}
+
+.floor-plan {
+    width: 80%;
+    height: 80%;
+    position: relative;
+}
+
+.room {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-25%, -50%);
+}
+
+.room-model__path {
+    fill: none;
+    stroke-width: 2px;
+    stroke: red;
+}
+
+.room-annotation__path {
+    fill: none;
+    stroke-width: 2px;
+    stroke: #79b4b2;
+}
+
+.room-annotation__circle {
+    fill: #79b4b2;
+}
+
+.room-annotation__text {
+    fill: #fff;
+    font-size: 1.5rem;
+}
