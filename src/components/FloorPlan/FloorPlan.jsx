@@ -12,17 +12,6 @@ const Wrapper = styled.div`
     position: relative;
 `;
 
-const Room = styled.div`
-    width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5rem;
-    pointer-events: none;
-`;
-
 const viewBox = {
     minX: 425,
     minY: 100,
