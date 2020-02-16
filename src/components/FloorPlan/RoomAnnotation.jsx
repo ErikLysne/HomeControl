@@ -5,8 +5,8 @@ import RoomSvg from "./RoomSvg";
 
 const AnnotationPath = styled.path`
     fill: none;
-    stroke-width: 2px;
     stroke: #79b4b2;
+    stroke-width: ${props => (props.highlight ? "4px" : "2px")};
 `;
 
 const AnnotationCircle = styled.circle`
@@ -15,7 +15,7 @@ const AnnotationCircle = styled.circle`
 
 const AnnotationText = styled.text`
     fill: #fff;
-    font-size: 1.5rem;
+    font-size: ${props => (props.highlight ? "1.75rem" : "1.5rem")};
 `;
 
 function RoomAnnotation(props) {
@@ -33,14 +33,16 @@ function RoomAnnotation(props) {
         "," +
         props.path.endpoint.y;
 
+    const isActiveRoom = props.activeRoom === props.name;
+
     return (
         <Room>
             <RoomSvg index={props.index} viewBox={props.viewBox}>
-                <AnnotationPath d={annotationPath} />
+                <AnnotationPath d={annotationPath} highlight={isActiveRoom} />
                 <AnnotationCircle
                     cx={props.path.origin.x}
                     cy={props.path.origin.y}
-                    r="10px"
+                    r={isActiveRoom ? "15px" : "10px"}
                 />
                 <AnnotationText
                     x={
@@ -49,6 +51,7 @@ function RoomAnnotation(props) {
                             : props.path.endpoint.x
                     }
                     y={props.path.endpoint.y - 10}
+                    highlight={isActiveRoom}
                 >
                     {props.name}
                 </AnnotationText>

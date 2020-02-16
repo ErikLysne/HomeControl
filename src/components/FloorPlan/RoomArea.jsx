@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Room from "./Room";
 import RoomSvg from "./RoomSvg";
 
+// Uncomment for radial gradient styling
+/*
 const RadialGradientWrapper = styled.svg`
     width: 0;
     height: 0;
@@ -29,16 +31,14 @@ function RoomAreaStyler(props) {
         </RadialGradientWrapper>
     );
 }
+*/
 
 const RoomAreaPath = styled.path`
-    fill: url(#room-radial-gradient-${props => props.index});
-    opacity: 80%;
     pointer-events: all;
-
-    &:hover {
-        fill: #00d7bf;
-        opacity: 50%;
-    }
+    fill: ${props =>
+        props.highlight
+            ? "rgba(22, 130, 93, 0.90)"
+            : "rgba(255, 252, 176, 0.75)"};
 `;
 
 function RoomArea(props) {
@@ -48,14 +48,16 @@ function RoomArea(props) {
     );
     path += "Z";
 
+    const isActiveRoom = props.activeRoom === props.name;
+
     return (
         <Room>
-            <RoomAreaStyler index={props.index} />
             <RoomSvg index={props.index} viewBox={props.viewBox}>
                 <RoomAreaPath
                     index={props.index}
                     d={path}
-                    onClick={() => console.log(props.name)}
+                    highlight={isActiveRoom}
+                    onClick={() => props.onClick(props.name)}
                 />
             </RoomSvg>
         </Room>

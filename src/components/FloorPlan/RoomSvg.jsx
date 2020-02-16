@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-function RoomSvg(props) {
-    const Wrapper = styled.svg`
-        width: 100%;
-        height: 100%;
-        z-index: ${props.index};
-    `;
+const Wrapper = styled.svg`
+    width: 100%;
+    height: 100%;
+    z-index: ${props => props.index};
+`;
 
+function RoomSvg(props) {
     return (
         <Wrapper
+            index={props.index}
             viewBox={
                 props.viewBox.minX +
                 ", " +

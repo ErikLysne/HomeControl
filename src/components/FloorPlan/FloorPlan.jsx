@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ShortId from "shortid";
 import styled from "styled-components";
 import RoomModel from "./RoomModel";
@@ -10,6 +10,7 @@ const Wrapper = styled.div`
     width: 50%;
     height: 80%;
     position: relative;
+    z-index: 0;
 `;
 
 const viewBox = {
@@ -19,9 +20,17 @@ const viewBox = {
     height: 575
 };
 
-function FloorPlan() {
+function FloorPlan(props) {
+    const [activeRoom, setActiveRoom] = useState(null);
+
+    function updateActiveRoom(roomName) {
+        console.log("Active room set to " + roomName);
+
+        setActiveRoom(roomName);
+    }
+
     return (
-        <Wrapper>
+        <Wrapper onClick={() => {}}>
             {Rooms.map(room => (
                 <div key={ShortId.generate()}>
                     <RoomModel
@@ -38,12 +47,15 @@ function FloorPlan() {
                         index={room.index}
                         area={room.coordinates.area}
                         viewBox={viewBox}
+                        onClick={updateActiveRoom}
+                        activeRoom={activeRoom}
                     />
                     <RoomAnnotation
                         key={ShortId.generate()}
                         name={room.name}
                         path={room.coordinates.annotation}
                         viewBox={viewBox}
+                        activeRoom={activeRoom}
                     />
                     <RoomModel
                         key={ShortId.generate()}
