@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+    width: 40%;
+    margin: auto;
+    text-align: right;
+    font-size: 2.5vh;
+`;
 
 function Clock(props) {
     const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -14,7 +22,7 @@ function Clock(props) {
         };
     });
 
-    return <div className="infobar-clock">{time}</div>;
+    return <Wrapper>{time}</Wrapper>;
 }
 
 export default Clock;

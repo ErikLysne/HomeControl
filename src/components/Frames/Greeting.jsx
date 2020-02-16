@@ -1,29 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
-class Greeting extends React.Component {
-    constructor(props) {
-        super(props);
+const Wrapper = styled.div`
+    font-size: 1rem;
+    padding: 30px;
+`;
 
-        this.state = { greeting: "" };
-    }
+function Greeting(props) {
+    const [greeting, setGreeting] = useState("");
 
-    componentDidMount() {
-        this.interval = setInterval(() => this.updateGreeting(), 10000);
-    }
+    useEffect(() => {
+        const interval = setInterval(() => updateGreeting(), 1000);
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
+        return function cleanup() {
+            clearInterval(interval);
+        };
+    });
 
-    updateGreeting() {
+    function updateGreeting() {
         const now = new Date();
         const hours = now.getHours();
-        const mins = now.getMinutes();
 
-        this.setState({ greeting: this.getGreeting(hours) });
+        setGreeting(getGreeting(hours));
     }
 
-    getGreeting(hours) {
+    function getGreeting(hours) {
         let greeting = "Good ";
         if (hours >= 6 && hours < 12) {
             greeting += "Morning";
@@ -37,11 +38,7 @@ class Greeting extends React.Component {
         return greeting + ", Erik";
     }
 
-    render() {
-        return (
-            <div className="frame--main__greeting">{this.state.greeting}</div>
-        );
-    }
+    return <Wrapper>{greeting}</Wrapper>;
 }
 
 export default Greeting;

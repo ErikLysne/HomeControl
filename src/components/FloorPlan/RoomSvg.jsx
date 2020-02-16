@@ -1,11 +1,15 @@
 import React from "react";
+import styled from "styled-components";
 
 function RoomSvg(props) {
+    const Wrapper = styled.svg`
+        width: 100%;
+        height: 100%;
+        z-index: ${props.index};
+    `;
+
     return (
-        <svg
-            width="100%"
-            height="100%"
-            style={{ zIndex: props.index }}
+        <Wrapper
             viewBox={
                 props.viewBox.minX +
                 ", " +
@@ -18,7 +22,7 @@ function RoomSvg(props) {
             preserveAspectRatio="xMidYMid meet"
         >
             {props.children}
-        </svg>
+        </Wrapper>
     );
 }
 

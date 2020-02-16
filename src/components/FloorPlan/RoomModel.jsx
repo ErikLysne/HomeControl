@@ -1,23 +1,30 @@
 import React from "react";
+import styled from "styled-components";
+import Room from "./Room";
 import RoomSvg from "./RoomSvg";
+
+const RoomPath = styled.path`
+    fill: none;
+    stroke-width: 2px;
+    stroke: red;
+`;
 
 function RoomModel(props) {
     return (
-        <div className="room">
+        <Room>
             <RoomSvg index={props.index} viewBox={props.viewBox}>
-                <path
+                <RoomPath
                     transform={
                         "translate(" +
-                        props.offsetX +
+                        props.offset.x +
                         ", " +
-                        props.offsetY +
+                        props.offset.y +
                         ")"
                     }
-                    className="room-model__path"
                     d={props.path}
                 />
             </RoomSvg>
-        </div>
+        </Room>
     );
 }
 

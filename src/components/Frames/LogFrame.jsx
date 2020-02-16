@@ -1,9 +1,50 @@
 import React from "react";
+import styled from "styled-components";
+import Frame from "./Frame";
+
+const Wrapper = styled(Frame)`
+    width: 25%;
+    right: 1%;
+    top: 50vh;
+    bottom: 175px;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 2px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: tramsparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #000;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #e5e5e5;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+`;
+
+const Text = styled.div`
+    width: 90%;
+    height: 90%;
+    font-size: 0.75rem;
+    padding: 5%;
+`;
 
 function LogFrame() {
     return (
-        <div className="frame frame--log">
-            <div className="frame--log__text">
+        <Wrapper>
+            <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna
                 molestie at elementum eu facilisis sed odio. Nec feugiat in
@@ -29,8 +70,8 @@ function LogFrame() {
                 maecenas ultricies mi eget. Augue interdum velit euismod in.
                 Risus viverra adipiscing at in tellus integer feugiat
                 scelerisque varius.
-            </div>
-        </div>
+            </Text>
+        </Wrapper>
     );
 }
 

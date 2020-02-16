@@ -1,13 +1,20 @@
 import React from "react";
+import styled from "styled-components";
 import Logo from "./Logo";
 import Clock from "./Clock";
 
+const Wrapper = styled.div`
+    width: 100%;
+    height: 6vh;
+    display: flex;
+`;
+
 function Infobar() {
     return (
-        <div className="infobar">
+        <Wrapper>
             <Clock />
             <Logo />
-        </div>
+        </Wrapper>
     );
 }
 

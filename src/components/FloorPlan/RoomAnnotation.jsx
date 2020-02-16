@@ -1,5 +1,22 @@
 import React from "react";
+import styled from "styled-components";
+import Room from "./Room";
 import RoomSvg from "./RoomSvg";
+
+const AnnotationPath = styled.path`
+    fill: none;
+    stroke-width: 2px;
+    stroke: #79b4b2;
+`;
+
+const AnnotationCircle = styled.circle`
+    fill: #79b4b2;
+`;
+
+const AnnotationText = styled.text`
+    fill: #fff;
+    font-size: 1.5rem;
+`;
 
 function RoomAnnotation(props) {
     const annotationPath =
@@ -17,17 +34,15 @@ function RoomAnnotation(props) {
         props.path.endpoint.y;
 
     return (
-        <div className="room">
+        <Room>
             <RoomSvg index={props.index} viewBox={props.viewBox}>
-                <path className="room-annotation__path" d={annotationPath} />
-                <circle
-                    className="room-annotation__circle"
+                <AnnotationPath d={annotationPath} />
+                <AnnotationCircle
                     cx={props.path.origin.x}
                     cy={props.path.origin.y}
                     r="10px"
                 />
-                <text
-                    className="room-annotation__text"
+                <AnnotationText
                     x={
                         props.path.elbow.x < props.path.endpoint.x
                             ? props.path.elbow.x
@@ -36,9 +51,9 @@ function RoomAnnotation(props) {
                     y={props.path.endpoint.y - 10}
                 >
                     {props.name}
-                </text>
+                </AnnotationText>
             </RoomSvg>
-        </div>
+        </Room>
     );
 }
 
