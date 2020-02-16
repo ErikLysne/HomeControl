@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    font-size: 1rem;
+    position: absolute;
     padding: 30px;
+    font-size: 1rem;
 `;
 
 function Greeting(props) {

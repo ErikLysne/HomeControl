@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     width: 40%;
     margin: auto;
     text-align: right;
-    font-size: 2.5vh;
+    font-size: 1rem;
 `;
 
 function Clock(props) {

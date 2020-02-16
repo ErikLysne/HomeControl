@@ -15,7 +15,7 @@ const AnnotationCircle = styled.circle`
 
 const AnnotationText = styled.text`
     fill: #fff;
-    font-size: ${props => (props.highlight ? "1.75rem" : "1.5rem")};
+    font-size: ${props => (props.highlight ? "1.5rem" : "1.25rem")};
 `;
 
 function RoomAnnotation(props) {
@@ -53,7 +53,7 @@ function RoomAnnotation(props) {
                     y={props.path.endpoint.y - 10}
                     highlight={isActiveRoom}
                 >
-                    {props.name}
+                    {props.name.toUpperCase()}
                 </AnnotationText>
             </RoomSvg>
         </Room>

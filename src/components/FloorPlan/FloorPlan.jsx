@@ -9,8 +9,14 @@ import Rooms from "../../assets/floorplan/rooms.json";
 const Wrapper = styled.div`
     width: 50%;
     height: 80%;
-    position: relative;
+    left: 0;
+    position: absolute;
     z-index: 0;
+`;
+
+const DeselectRoomArea = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 const viewBox = {
@@ -21,16 +27,9 @@ const viewBox = {
 };
 
 function FloorPlan(props) {
-    const [activeRoom, setActiveRoom] = useState(null);
-
-    function updateActiveRoom(roomName) {
-        console.log("Active room set to " + roomName);
-
-        setActiveRoom(roomName);
-    }
-
     return (
-        <Wrapper onClick={() => {}}>
+        <Wrapper>
+            <DeselectRoomArea onClick={() => props.setActiveRoom("House")} />
             {Rooms.map(room => (
                 <div key={ShortId.generate()}>
                     <RoomModel
@@ -47,15 +46,15 @@ function FloorPlan(props) {
                         index={room.index}
                         area={room.coordinates.area}
                         viewBox={viewBox}
-                        onClick={updateActiveRoom}
-                        activeRoom={activeRoom}
+                        onClick={props.setActiveRoom}
+                        activeRoom={props.activeRoom}
                     />
                     <RoomAnnotation
                         key={ShortId.generate()}
                         name={room.name}
                         path={room.coordinates.annotation}
                         viewBox={viewBox}
-                        activeRoom={activeRoom}
+                        activeRoom={props.activeRoom}
                     />
                     <RoomModel
                         key={ShortId.generate()}

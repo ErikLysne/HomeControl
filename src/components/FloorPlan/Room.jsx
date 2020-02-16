@@ -7,7 +7,7 @@ const Room = styled.div`
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0.5rem;
+    padding: 1rem;
     pointer-events: none;
 `;
 

@@ -5,7 +5,7 @@ import Clock from "./Clock";
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 6vh;
+    height: 3rem;
     display: flex;
 `;
 

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     margin: auto 40px auto 0;
     color: #7b7b7b;
     font-family: "Exo 2", sans-serif;
-    font-size: 3vh;
+    font-size: 2rem;
     text-align: right;
 `;
 
