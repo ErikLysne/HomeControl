@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Button = styled.button({
-    width: "100px",
-    height: "100px",
-    margin: "-50px auto",
-    backgroundColor: "transparent",
-    borderStyle: "none",
-    WebkitBoxReflect:
-        "below 0 linear-gradient(to top, rgba(255, 255, 255, 0.5) 0% rgba(255, 255, 255, 0) 60%)"
-});
+const Button = styled.button`
+    width: 100px;
+    height: 100px;
+    margin: -40px auto;
+    background-color: transparent;
+    border-style: none;
+    -webkit-box-reflect: below -20px -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(transparent),
+            to(rgba(250, 250, 250, 0.1))
+        );
+`;
 
 const Icon = styled.img({
     filter: "invert(100%) brightness(90%)"

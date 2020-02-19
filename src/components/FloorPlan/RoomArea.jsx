@@ -37,8 +37,8 @@ const RoomAreaPath = styled.path`
     pointer-events: all;
     fill: ${props =>
         props.highlight
-            ? "rgba(22, 130, 93, 0.90)"
-            : "rgba(255, 252, 176, 0.75)"};
+            ? "rgba(139, 229, 244, 0.75)"
+            : "rgba(255, 252, 176, 0.5)"};
 `;
 
 function RoomArea(props) {

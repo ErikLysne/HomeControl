@@ -6,7 +6,8 @@ import RoomSvg from "./RoomSvg";
 const RoomPath = styled.path`
     fill: none;
     stroke-width: 2px;
-    stroke: grey;
+    stroke-linecap: round;
+    stroke: rgba(255, 255, 255, 0.5);
 `;
 
 function RoomModel(props) {

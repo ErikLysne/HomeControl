@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Frame from "./Frame";
 
 const Wrapper = styled(Frame)`
-    width: 25%;
+    width: 20%;
     right: 1%;
     top: 50vh;
     bottom: 175px;

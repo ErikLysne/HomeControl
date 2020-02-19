@@ -2,7 +2,12 @@
 html,
 body {
     margin: 0;
-    background-color: #000;
+    background: linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(33, 125, 173, 1) 100%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     font-family: "PT Mono", monospace;
     font-size: 16px;

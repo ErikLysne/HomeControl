@@ -6,7 +6,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 const Wrapper = styled.div`
     width: 60%;
     margin: auto 40px auto 0;
-    color: #7b7b7b;
+    color: #fff;
     font-family: "Exo 2", sans-serif;
     font-size: 2rem;
     text-align: right;

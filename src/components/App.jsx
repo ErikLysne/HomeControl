@@ -2,17 +2,42 @@ import React from "react";
 import Navbar from "./Navbar/Navbar";
 import Infobar from "./Infobar/Infobar";
 import MainFrame from "./Frames/MainFrame";
-import LogFrame from "./Frames/LogFrame";
+import Carousel from "./Carousel/Carousel";
 
 function App() {
     return (
         <div className="app">
             <Infobar />
-            <MainFrame />
-            <LogFrame />
+            <Carousel>
+                <MainFrame />
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                    <h1 style={{ margin: "auto" }}>Frame 1</h1>
+                </div>
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                    <h1 style={{ margin: "auto" }}>Frame 2</h1>
+                </div>
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                    <h1 style={{ margin: "auto" }}>Frame 3</h1>
+                </div>
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                    <h1 style={{ margin: "auto" }}>Frame 4</h1>
+                </div>
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                    <h1 style={{ margin: "auto" }}>Frame 5</h1>
+                </div>
+            </Carousel>
             <Navbar />
         </div>
     );
 }
 
+/*
+    return (
+        <div className="app">
+            <Infobar />
+            <MainFrame />
+            <Navbar />
+        </div>
+    );
+    */
 export default App;

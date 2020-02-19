@@ -12,20 +12,21 @@ const Wrapper = styled.div`
     bottom: 50px;
     margin-left: auto;
     margin-right: auto;
-    perspective: 500px;
+    perspective: 300px;
     display: flex;
 `;
 
 const Background = styled.div`
     width: 100%;
-    height: 100%;
+    height: 60px;
     margin: auto;
     position: absolute;
+    top: 20px;
     transform-style: preserve-3d;
     transform: rotateX(60deg);
     background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0)
+        rgba(152, 176, 181, 0.5),
+        rgba(255, 255, 255, 0.5)
     );
 `;
 
