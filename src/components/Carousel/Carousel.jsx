@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import shortid from "shortid";
 import styled, { keyframes } from "styled-components";
 import useWindowSize from "../../assets/functions/use-window-size.jsx";
@@ -16,7 +16,7 @@ const Frame = styled.div`
     top: 40%;
     border-color: rgba(255, 255, 255, 0.5);
     border-style: solid;
-    border-width: 2px;
+    border-width: 4px;
     transform-style: preserve-3d;
     transform: ${props =>
         transform(
@@ -27,25 +27,38 @@ const Frame = styled.div`
             props.numberOfFrames,
             props.frameOffset
         )};
-    animation: ${props =>
-            animateRotation(
-                props.frameWidth,
-                props.frameHeight,
-                props.frameIndex,
-                props.activeFrame,
-                props.numberOfFrames,
-                props.frameOffset
-            )}
-        0.5s;
     z-index: ${props =>
         zIndex(
             props.frameIndex,
             props.activeFrame.current,
             props.numberOfFrames
         )};
+    opacity: ${props =>
+        zIndex(
+            props.frameIndex,
+            props.activeFrame.current,
+            props.numberOfFrames
+        ) === 0
+            ? 1
+            : 0};
 `;
 
-function animateRotation(
+const AnimatedFrame = styled(Frame)`
+    animation: ${props =>
+            props.activeFrame.animateTransition
+                ? animate(
+                      props.frameWidth,
+                      props.frameHeight,
+                      props.frameIndex,
+                      props.activeFrame,
+                      props.numberOfFrames,
+                      props.frameOffset
+                  )
+                : ""}
+        ${props => props.transitionDuration}ms;
+`;
+
+function animate(
     frameWidth,
     frameHeight,
     frameIndex,
@@ -54,7 +67,7 @@ function animateRotation(
     frameOffset
 ) {
     return keyframes`
-    from {
+    0% {
         transform: ${transform(
             frameWidth,
             frameHeight,
@@ -63,8 +76,24 @@ function animateRotation(
             numberOfFrames,
             frameOffset
         )};
+        opacity: ${
+            zIndex(frameIndex, activeFrame.previous, numberOfFrames) === 0
+                ? 1
+                : 0
+        };
     }
-    to {
+    10% {
+        transform: ${transform(
+            frameWidth,
+            frameHeight,
+            frameIndex,
+            activeFrame.previous,
+            numberOfFrames,
+            frameOffset
+        )};
+        opacity: 0.75;
+    }
+    100% {
         transform: ${transform(
             frameWidth,
             frameHeight,
@@ -73,7 +102,13 @@ function animateRotation(
             numberOfFrames,
             frameOffset
         )};
+        opacity: ${
+            zIndex(frameIndex, activeFrame.current, numberOfFrames) === 0
+                ? 1
+                : 0
+        };
     }
+        
 `;
 }
 
@@ -104,7 +139,7 @@ function transform(
     transform += ` translateY(${-0.5 * frameHeight}px)`;
     // Rotate along y-axis
     transform += ` rotateY(${angleOfRotation}deg)`;
-    // Translate outward to apothem
+    // Translate outward to apothem + offset
     transform += ` translateZ(${displacement}px)`;
     // Rotate back to original reference frame
     transform += ` rotateY(${-angleOfRotation}deg)`;
@@ -146,7 +181,11 @@ const RotateLeftButton = styled(RotationClickableArea)`
 
 function Carousel(props) {
     const numberOfFrames = props.children.length ? props.children.length : 0;
-    const [activeFrame, setActiveFrame] = useState({ current: 0, previous: 0 });
+    const [activeFrame, setActiveFrame] = useState({
+        current: 0,
+        previous: 0,
+        animateTransition: false
+    });
 
     const { windowWidth, windowHeight } = useWindowSize();
     const frameWidth = props.width * windowWidth;
@@ -159,7 +198,8 @@ function Carousel(props) {
                 activeFrame.current >= numberOfFrames - 1
                     ? 0
                     : activeFrame.current + 1,
-            previous: previousActive
+            previous: previousActive,
+            animateTransition: true
         };
         console.log(newActiveFrame);
         setActiveFrame(newActiveFrame);
@@ -172,17 +212,29 @@ function Carousel(props) {
                 activeFrame.current === 0
                     ? numberOfFrames - 1
                     : activeFrame.current - 1,
-            previous: previousActive
+            previous: previousActive,
+            animateTransition: true
         };
         console.log(newActiveFrame);
         setActiveFrame(newActiveFrame);
     }
 
+    useEffect(() => {
+        if (activeFrame.animateTransition) {
+            setTimeout(function() {
+                setActiveFrame({
+                    ...activeFrame,
+                    animateTransition: false
+                });
+            }, props.transitionDuration);
+        }
+    });
+
     let index = 0;
     return (
         <CarouselContainer style={{ perspective: "4000px" }}>
             {React.Children.map(props.children, child => (
-                <Frame
+                <AnimatedFrame
                     key={shortid.generate()}
                     style={{ width: frameWidth, height: frameHeight }}
                     frameWidth={frameWidth}
@@ -191,11 +243,12 @@ function Carousel(props) {
                     activeFrame={activeFrame}
                     numberOfFrames={numberOfFrames}
                     frameOffset={props.frameOffset}
+                    transitionDuration={props.transitionDuration}
                 >
                     {child}
                     <RotateRightButton onClick={rotateRight} />
                     <RotateLeftButton onClick={rotateLeft} />
-                </Frame>
+                </AnimatedFrame>
             ))}
         </CarouselContainer>
     );
@@ -204,7 +257,8 @@ function Carousel(props) {
 Carousel.defaultProps = {
     width: 0.9,
     height: 0.75,
-    frameOffset: 0.1
+    frameOffset: 0.1,
+    transitionDuration: 1000
 };
 
 export default Carousel;
