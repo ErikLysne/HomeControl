@@ -46,7 +46,7 @@ const Frame = styled.div`
 const AnimatedFrame = styled(Frame)`
     animation: ${props =>
             props.activeFrame.animateTransition
-                ? animate(
+                ? animateTransition(
                       props.frameWidth,
                       props.frameHeight,
                       props.frameIndex,
@@ -58,7 +58,7 @@ const AnimatedFrame = styled(Frame)`
         ${props => props.transitionDuration}ms;
 `;
 
-function animate(
+function animateTransition(
     frameWidth,
     frameHeight,
     frameIndex,
@@ -192,6 +192,8 @@ function Carousel(props) {
     const frameHeight = props.height * windowHeight;
 
     function rotateRight() {
+        if (activeFrame.animateTransition) return;
+
         const previousActive = activeFrame.current;
         const newActiveFrame = {
             current:
@@ -201,11 +203,12 @@ function Carousel(props) {
             previous: previousActive,
             animateTransition: true
         };
-        console.log(newActiveFrame);
         setActiveFrame(newActiveFrame);
     }
 
     function rotateLeft() {
+        if (activeFrame.animateTransition) return;
+
         const previousActive = activeFrame.current;
         const newActiveFrame = {
             current:
@@ -215,7 +218,6 @@ function Carousel(props) {
             previous: previousActive,
             animateTransition: true
         };
-        console.log(newActiveFrame);
         setActiveFrame(newActiveFrame);
     }
 
@@ -257,7 +259,7 @@ function Carousel(props) {
 Carousel.defaultProps = {
     width: 0.9,
     height: 0.75,
-    frameOffset: 0.1,
+    frameOffset: 0.15,
     transitionDuration: 1000
 };
 
