@@ -79,7 +79,7 @@ function animateTransition(
         opacity: ${
             zIndex(frameIndex, activeFrame.previous, numberOfFrames) === 0
                 ? 1
-                : 0
+                : 0.25
         };
     }
     10% {
@@ -92,6 +92,21 @@ function animateTransition(
             frameOffset
         )};
         opacity: 0.75;
+    }
+    75% {
+        transform: ${transform(
+            frameWidth,
+            frameHeight,
+            frameIndex,
+            activeFrame.current,
+            numberOfFrames,
+            frameOffset
+        )};
+        opacity: ${
+            zIndex(frameIndex, activeFrame.current, numberOfFrames) === 0
+                ? 1
+                : 0.25
+        };
     }
     100% {
         transform: ${transform(
@@ -146,7 +161,7 @@ function transform(
     // Translate backwards to keep original size of the front face
     transform += ` translateZ(${-displacement}px)`;
     // Rotate back
-    transform += ` rotateY(${angleOfRotation}deg)`;
+    //transform += ` rotateY(${angleOfRotation}deg)`;
 
     return transform;
 }
@@ -259,8 +274,8 @@ function Carousel(props) {
 Carousel.defaultProps = {
     width: 0.9,
     height: 0.75,
-    frameOffset: 0.15,
-    transitionDuration: 1000
+    frameOffset: 0.25,
+    transitionDuration: 100
 };
 
 export default Carousel;

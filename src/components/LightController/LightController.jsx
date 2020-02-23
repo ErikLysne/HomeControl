@@ -4,23 +4,31 @@ import styled from "styled-components";
 import Gauge from "./Gauge";
 
 const LightControllerContainer = styled.div`
-    width: 40%;
-    height: 40%;
+    width: 50%;
+    height: 100%;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 0;
+    top: 0;
     display: flex;
-    opacity: 0.5;
 `;
 
 const GaugeContainer = styled.div`
-    width: 100%;
+    width: 75%;
+    height: 50%;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+const GaugeWrapper = styled.div`
+    width: 30%;
+    padding-top: 30%;
+    margin: auto;
+    position: relative;
 `;
 
 const TargetLabel = styled.div`
@@ -28,9 +36,11 @@ const TargetLabel = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    font-size: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 30px 0;
 `;
 
 function LightController(props) {
@@ -38,9 +48,27 @@ function LightController(props) {
         <LightControllerContainer>
             <TargetLabel>{"Target: " + props.activeRoom}</TargetLabel>
             <GaugeContainer>
-                <Gauge key={shortid.generate()} name={"HUE"}></Gauge>
-                <Gauge key={shortid.generate()} name={"SAT"}></Gauge>
-                <Gauge key={shortid.generate()} name={"BRI"}></Gauge>
+                <GaugeWrapper>
+                    <Gauge
+                        key={shortid.generate()}
+                        name={"HUE"}
+                        type={"hue"}
+                    ></Gauge>
+                </GaugeWrapper>
+                <GaugeWrapper>
+                    <Gauge
+                        key={shortid.generate()}
+                        name={"SAT"}
+                        type={"sat"}
+                    ></Gauge>
+                </GaugeWrapper>
+                <GaugeWrapper>
+                    <Gauge
+                        key={shortid.generate()}
+                        name={"BRI"}
+                        type={"bri"}
+                    ></Gauge>
+                </GaugeWrapper>
             </GaugeContainer>
         </LightControllerContainer>
     );

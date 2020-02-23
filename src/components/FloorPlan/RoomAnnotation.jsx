@@ -5,16 +5,16 @@ import RoomSvg from "./RoomSvg";
 
 const AnnotationPath = styled.path`
     fill: none;
-    stroke: #79b4b2;
+    stroke: rgba(255, 255, 255, 0.75);
     stroke-width: ${props => (props.highlight ? "4px" : "2px")};
 `;
 
 const AnnotationCircle = styled.circle`
-    fill: #79b4b2;
+    fill: rgba(255, 255, 255, 0.75);
 `;
 
 const AnnotationText = styled.text`
-    fill: #fff;
+    fill: rgba(255, 255, 255, 0.75);
     font-size: ${props => (props.highlight ? "1.5rem" : "1.25rem")};
 `;
 

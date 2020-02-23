@@ -7,7 +7,7 @@ const RoomPath = styled.path`
     fill: none;
     stroke-width: 2px;
     stroke-linecap: round;
-    stroke: rgba(255, 255, 255, 0.5);
+    stroke: rgba(37, 215, 219, 0.5);
 `;
 
 function RoomModel(props) {
